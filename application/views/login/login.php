@@ -22,16 +22,34 @@
   </head>
   <body>
     <div class="container">
-		<div class="header clearfix">
-	        <nav>
-	          <ul class="nav nav-pills pull-right">
-	            <li role="presentation" class="active"><a href="#">Home</a></li>
-	            <!-- <li role="presentation"><a href="#"></a></li> -->
-	            <li role="presentation"><a href="#">Log out</a></li>
-	          </ul>
-	        </nav>
-	        <h3 class="text-muted">KOFEIN 2016</h3>
-    	</div>
+  		<!-- <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <li role="presentation"><a href="#">Log out</a></li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">KOFEIN 2016</h3>
+    	</div> -->
+
+      <div class="row col-md-6 col-md-offset-3" style="margin-top:90px;">
+        <h3>Login</h3>
+        <hr>
+        <form method="POST" action="http://artodo.co.id/auth/register" accept-charset="UTF-8"><input name="_token" type="hidden" value="ZmIlF9j9LMTzUAZ1TUFlLuHaJURR4kmWTYnlRsHa">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input class="form-control" placeholder="Your full name" required="required" autofocus="autofocus" name="name" type="text" value="">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-control" placeholder="example@example.com" required="required" name="email" type="email" value="">
+          </div>
+          <div class="form-group text-center">
+            <input class="btn btn-primary btn-lg btn-block" type="submit" value="Login">
+          </div>
+          <p>belum punya akun kofein? silahkan dafar <a href="#">disini</a></p>
+        </form>
+      </div>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
