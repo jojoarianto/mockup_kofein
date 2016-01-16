@@ -15,4 +15,18 @@ class Login extends CI_Controller {
 		$this->load->view('register/index_content');
 		$this->load->view('footer');	
 	}
+
+	public function home(){
+		$this->load->view('pre_header');
+		$this->load->view('header');
+		$this->load->view('home/index_content');
+		$this->load->view('footer');
+	}
+
+	public function pengumuman_pending(){
+		$this->load->view('pre_header');
+		$this->load->view('header');
+		$this->load->view('home/pengumuman_pending');
+		$this->load->view('footer');	
+	}
 }
