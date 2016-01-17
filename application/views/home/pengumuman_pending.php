@@ -1,7 +1,7 @@
     <div class="container">
       <div class="row-fluid">
         <div class="col-md-12">
-          <div class="alert alert-success">
+          <!-- <div class="alert alert-success">
             <h3>Terima kasih </h3> 
             Waktu ujian try out anda telah habis
           </div>
@@ -9,7 +9,7 @@
             <h3>Pengumuman try out</h3> 
             Hasil try out akan diumumkan serentak pada tanggal xx bulan x tahun xxxx
             <div class="downspace"></div>
-          </div>
+          </div> -->
           <h3>Catatan</h3>
           <ul>
             <li> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
