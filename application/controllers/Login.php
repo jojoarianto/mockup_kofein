@@ -43,4 +43,19 @@ class Login extends CI_Controller {
 		$this->load->view('home/pengumuman_pending');
 		$this->load->view('footer');	
 	}
+
+	public function pengumuman(){
+		$this->load->view('pre_header');
+		$data_header['non_aktif'] = true;
+		$this->load->view('header', $data_header);
+		$data_alert = [
+			'type' => 'danger',
+			'dismiss' => true,
+			'title' => '!',
+			'message' => 'Waktu pengerjaan anda telah habis'
+		];
+		// $this->load->view('_alert', $data_alert);
+		$this->load->view('pengumuman/index_content');
+		$this->load->view('footer');	
+	}
 }
