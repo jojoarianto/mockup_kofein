@@ -82,3 +82,15 @@ body {
 .downspace {
   margin-bottom: 30px;
 }
+
+.downspace-10 {
+  margin-bottom: 100px;
+}
+
+.bigger {
+  font-size: 50px;
+}
+
+.btnku {
+  min-width: 200px;
+}

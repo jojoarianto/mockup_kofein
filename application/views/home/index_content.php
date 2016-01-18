@@ -1,6 +1,7 @@
     <div class="container">
       <div class="row-fluid">
         <div class="col-md-12">
+          <?php $this->view('home/profile'); ?>
           <h3>Tata cara try out</h3>
           <ul>
             <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -31,9 +32,11 @@
           </ul>          
           <hr>
           <div class="text-center">
-            <button type="submit" class="btn btn-primary btn-lg">Mulai try out</button> 
+            <button type="submit" class="btn btn-primary btn-lg btnku"><i class="glyphicon glyphicon-pencil bigger" ></i> <h3>Mulai try out</h3></button> 
+            <button type="submit" class="btn btn-primary btn-lg btnku" disabled><i class="glyphicon glyphicon-download-alt bigger" ></i> <h3>Undah Soal</h3></button> 
+            <button type="submit" class="btn btn-primary btn-lg btnku" disabled><i class="glyphicon glyphicon-file bigger" ></i> <h3>Pengumuman</h3></button> 
           </div>
-          <div style="margin-bottom:50px"></div>
+          <div class="downspace-10"></div>
         </div>
       </div>
     </div>
