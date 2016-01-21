@@ -2,15 +2,15 @@
           <table class="table table-bordered" style="margin-bottom: 30px">
             <tr>
               <td width="40%" class="info">Nama </td>
-              <td class="warning"><?php if(isset($data)) echo $data->username ?></td>
+              <td class="warning"><?php if(isset($data['user'])) echo $data['user']->username ?></td>
             </tr>
             <tr>
               <td class="info">Email </td>
-              <td class="warning"><?php if(isset($data)) echo $data->email ?></td>
+              <td class="warning"><?php if(isset($data['user'])) echo $data['user']->email ?></td>
             </tr>
             <tr>
               <td class="info">Asal sekolah </td>
-              <td class="warning"><?php if(isset($data)) echo $data->sekolah_asal ?></td>
+              <td class="warning"><?php if(isset($data['user'])) echo $data['user']->sekolah_asal ?></td>
             </tr>
           </table>
 
@@ -22,8 +22,8 @@
               <td>Pengumuman hasil</td>
             </tr>
             <tr class="warning">
-              <td>12 Januari 2015 08:00 PM</td>
-              <td>12 Januari 2015 08:00 PM</td>
-              <td>12 Januari 2015 08:00 PM</td>
+              <td><?php if(isset($data['waktu'])) { echo 'Pukul : ' . indonesian_date( $data['waktu']->time_start, 'H:i' )  . '<br>' . indonesian_date( $data['waktu']->time_start, 'l, j F Y', '' );      } else echo "-"; ?></td>
+              <td><?php if(isset($data['waktu'])) echo indonesian_date_custom( $data['waktu']->time_end, 'l, j F Y' );        else echo "-"; ?></td>
+              <td><?php if(isset($data['pengumuman'])) echo indonesian_date_custom( $data['pengumuman']->time_pengumuman, 'l, j F Y'); else echo "-"; ?></td>
             </tr>
           </table>

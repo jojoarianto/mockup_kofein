@@ -14,7 +14,8 @@ class Login extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	public function doLogin(){
+	public function doLogin()
+	{
 		if ($this->input->is_ajax_request()) {
 			$this->load->library('form_validation');
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
@@ -50,13 +51,15 @@ class Login extends CI_Controller {
         }
 	}
 
-	public function register(){
+	public function register()
+	{
 		$this->load->view('pre_header');
 		$this->load->view('register/index_content');
 		$this->load->view('footer');	
 	}
 
-	public function pengumuman_pending(){
+	public function pengumuman_pending()
+	{
 		$this->load->view('pre_header');
 		$this->load->view('header');
 		$data_alert = [
@@ -70,7 +73,8 @@ class Login extends CI_Controller {
 		$this->load->view('footer');	
 	}
 
-	public function pengumuman(){
+	public function pengumuman()
+	{
 		$this->load->view('pre_header');
 		$data_header['non_aktif'] = true;
 		$this->load->view('header', $data_header);
@@ -85,7 +89,8 @@ class Login extends CI_Controller {
 		$this->load->view('footer');	
 	}
 
-	public function logout() {
+	public function logout()
+	{
 		// create the data object
 		$data = new stdClass();
 		if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {

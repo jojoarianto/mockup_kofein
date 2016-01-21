@@ -10,4 +10,8 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
         KEY `ci_sessions_timestamp` (`timestamp`)
 );
 
+CREATE TABLE `kofein`.`waktu_ujian` ( `id` INT NOT NULL AUTO_INCREMENT , `user_id` INT NOT NULL , `ujian_id` INT NOT NULL , `time_start` DATETIME NOT NULL , `time_end` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
+CREATE TABLE `kofein`.`ujians` ( `id` INT NOT NULL AUTO_INCREMENT , `time_start` DATETIME NOT NULL , `time_end` DATETIME NOT NULL , `time_pengumuman` DATETIME NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+ALTER TABLE `ujians` ADD `durasi_ujian` INT NOT NULL AFTER `time_pengumuman`;
