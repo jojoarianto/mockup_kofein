@@ -56,24 +56,6 @@ class Login extends CI_Controller {
 		$this->load->view('footer');	
 	}
 
-	public function home(){
-		if ( !isset($_SESSION['logged_in']) && $_SESSION['logged_in'] !== true) {
-			redirect(base_url() . 'login/');
-		}
-
-		$this->load->view('pre_header');
-		$this->load->view('header');
-		$data_alert = [
-			'type' => 'success',
-			'dismiss' => true,
-			'title' => 'Selamat Datang!',
-			'message' => 'Try out dapat dilaksanakan pada tanggal 5 Februari 2015 pukul 08.00 WIB sampai dengan 6 Februari pukul 24.00 WIB'
-		];
-		$this->load->view('_alert', $data_alert);
-		$this->load->view('home/index_content');
-		$this->load->view('footer');
-	}
-
 	public function pengumuman_pending(){
 		$this->load->view('pre_header');
 		$this->load->view('header');

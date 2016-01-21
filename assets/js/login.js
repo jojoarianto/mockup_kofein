@@ -14,8 +14,7 @@ $(document).ready(function () {
                 $("#alert").html(data);
                 $("#alert").show('fast');
             } else if(data === "login") {
-            	alert('berhasil login');
-                window.location.replace(url + 'login/home');
+                window.location.replace(url + 'home');
             } else {
                 window.location.replace(url + 'login');
             }

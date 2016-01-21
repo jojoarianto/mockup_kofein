@@ -2,15 +2,15 @@
           <table class="table table-bordered" style="margin-bottom: 30px">
             <tr>
               <td width="40%" class="info">Nama </td>
-              <td class="warning">Joko Irianto</td>
+              <td class="warning"><?php if(isset($data)) echo $data->username ?></td>
             </tr>
             <tr>
               <td class="info">Email </td>
-              <td class="warning">jochkonly@gmail.com</td>
+              <td class="warning"><?php if(isset($data)) echo $data->email ?></td>
             </tr>
             <tr>
               <td class="info">Asal sekolah </td>
-              <td class="warning">SMA Negeri 15 Surabaya</td>
+              <td class="warning"><?php if(isset($data)) echo $data->sekolah_asal ?></td>
             </tr>
           </table>
 

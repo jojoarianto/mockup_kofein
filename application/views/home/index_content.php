@@ -1,7 +1,7 @@
     <div class="container">
       <div class="row-fluid">
         <div class="col-md-12">
-          <?php $this->view('home/_profile'); ?>
+          <?php $this->view('home/_profile', $data); ?>
           <h3>Tata cara try out</h3>
           <ul>
             <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

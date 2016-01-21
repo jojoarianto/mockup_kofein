@@ -19,11 +19,11 @@ class Users_model extends CI_Model {
         return $query;
     }
 
- //    public function getMemberByID($id) {
- //        $this->db->where('id_member', $id);
- //        $query = $this->db->get('member');
- //        return $query;
- //    }
+    public function getMemberByID($id) {
+        $this->db->where('id', $id);
+        $query = $this->db->get('users');
+        return $query;
+    }
 
  //    public function isVoucherAvailable($v) {
  //        $this->db->where('id_voucher', $v);
