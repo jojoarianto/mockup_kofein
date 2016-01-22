@@ -5,6 +5,10 @@ class Login extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
+
+		if ( isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
+			redirect(base_url() . 'home/');
+		}
 	}
 
 	public function index()
@@ -88,27 +92,5 @@ class Login extends CI_Controller {
 		$this->load->view('pengumuman/index_content');
 		$this->load->view('footer');	
 	}
-
-	public function logout()
-	{
-		// create the data object
-		$data = new stdClass();
-		if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
-			// remove session datas
-			foreach ($_SESSION as $key => $value) {
-				unset($_SESSION[$key]);
-			}
-			// user logout ok
-			// $this->load->view('header');
-			// $this->load->view('user/logout/logout_success', $data);
-			// $this->load->view('footer');
-			echo "log out sukses";
-		} else {
-			// there user was not logged in, we cannot logged him out,
-			// redirect him to site root
-			redirect('/');
-			
-		}
-		
-	}
+	
 }

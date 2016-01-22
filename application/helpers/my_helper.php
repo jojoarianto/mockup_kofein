@@ -43,9 +43,24 @@ if (!function_exists('indonesian_date')) {
 
 
 if (!function_exists('indonesian_date_custom')) {
+
 	function indonesian_date_custom($date)
 	{
 		return 'Pukul : ' . indonesian_date( $date, 'H:i' )  . '<br>' . indonesian_date( $date, 'l, j F Y', '' );
+	}
+}
+
+if (!function_exists('isSessionExist')) {
+	/*
+	* function of checking session
+	*
+	*/
+	function isSessionExist()
+	{
+		// for redirect if session does't exist
+		if ( !isset($_SESSION['logged_in']) && $_SESSION['logged_in'] !== true) {
+			redirect(base_url() . 'login/');
+		}
 	}
 }
 
