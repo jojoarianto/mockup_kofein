@@ -6,7 +6,7 @@
           <div class="alert alert-danger" role="alert" id="alert" style="display: none;"></div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input class="form-control" placeholder="example@example.com" required="required" name="email" type="email" value="">
+            <input class="form-control" placeholder="example@example.com" required="required" name="email" type="email" value="" autofocus="autofocus">
           </div>
           <div class="form-group">
             <label for="password">Password</label>

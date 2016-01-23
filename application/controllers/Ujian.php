@@ -14,6 +14,7 @@ class Ujian extends CI_Controller {
 	public function index()
 	{
 		echo "page ujian ";
+		$this->load->view('ujian/ujian');
 	}
 
 	// method untuk timer
