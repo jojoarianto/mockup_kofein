@@ -13,20 +13,32 @@ class Ujian extends CI_Controller {
 
 	public function index()
 	{
+		$this->output->enable_profiler(TRUE);
+
 		setJsPreHeader(base_url() . 'assets/js/icheck.js');
 		setCssPreHeader(base_url() . 'assets/skins/square/blue.css');
 		setJsPreHeader(base_url() . 'assets/js/ujian.js');
 
 		$this->load->model('waktu_model');
 		$this->load->model('ujian_model');
+		$this->load->model('soal_model');
+		$this->load->model('opsi_model');
 
 		$data['data']['waktu'] 		= $this->waktu_model->getWaktuByUserId($this->user_id)->row();
 		$data['data']['ujian']		= $this->ujian_model->getUjianById($this->ujian_id)->row();
+		$soal['data']['soal']		= $this->soal_model->getSoal()->result();
+		$soal['data']['opsi']		= $this->opsi_model->getOpsi();
+
+		$opsi = array();
+		foreach ($soal['data']['opsi']->result() as $row) {
+			$opsi[ $row->no_soal ][ $row->no_opsi ] 	= $row->isi;
+		}
+		$soal['data']['opsi'] = $opsi;
 
 		$this->load->view('pre_header');
 		$this->load->view('ujian/_header_ujian');
 		$this->load->view('ujian/_head_of_paper', $data);
-		$this->load->view('ujian/_soal');
+		$this->load->view('ujian/_soal', $soal);
 		$this->load->view('footer');
 
 		/*
