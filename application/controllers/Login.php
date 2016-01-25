@@ -13,6 +13,9 @@ class Login extends CI_Controller {
 
 	public function index()
 	{		
+		setJsPreHeader(base_url() . 'assets/js/login.js');
+		setCssPreHeader(base_url() . 'assets/css/kofein-custom.css');
+
 		$this->load->view('pre_header');
 		$this->load->view('login/index_content');
 		$this->load->view('footer');

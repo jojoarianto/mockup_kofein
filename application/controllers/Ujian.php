@@ -13,7 +13,31 @@ class Ujian extends CI_Controller {
 
 	public function index()
 	{
-		echo "page ujian ";
+		setJsPreHeader(base_url() . 'assets/js/icheck.js');
+		setCssPreHeader(base_url() . 'assets/skins/square/blue.css');
+		setJsPreHeader(base_url() . 'assets/js/ujian.js');
+
+		$this->load->model('waktu_model');
+		$this->load->model('ujian_model');
+
+		$data['data']['waktu'] 		= $this->waktu_model->getWaktuByUserId($this->user_id)->row();
+		$data['data']['ujian']		= $this->ujian_model->getUjianById($this->ujian_id)->row();
+
+		$this->load->view('pre_header');
+		$this->load->view('ujian/_header_ujian');
+		$this->load->view('ujian/_head_of_paper', $data);
+		$this->load->view('ujian/_soal');
+		$this->load->view('footer');
+
+		/*
+		<script src="<?php echo base_url() ?>assets/js/icheck.js"></script>
+	    <link href="<?php echo base_url() ?>assets/skins/square/blue.css" rel="stylesheet">
+	    <script src="<?php echo base_url() ?>assets/js/ujian.js"></script>
+		*/
+	}
+
+	public function tes()
+	{
 		$this->load->view('ujian/ujian');
 	}
 

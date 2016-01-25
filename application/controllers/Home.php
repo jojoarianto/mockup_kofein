@@ -9,6 +9,8 @@ class Home extends CI_Controller {
 		isSessionExist();
 		$this->user_id 	= $_SESSION['user_id'];
 		$this->ujian_id = $this->config->item('ujian_id');
+		
+		setCssPreHeader(base_url() . 'assets/css/kofein-custom.css');
 	}
 
 	public function index()
