@@ -1,3 +1,4 @@
+    
     function startTime() {
         var today = new Date();
         var h = today.getHours();
@@ -11,7 +12,7 @@
     }
 
     function checkTime(i) {
-        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        if (i < 10) i = "0" + i; // add zero in front of numbers < 10
         return i;
     }
 
@@ -23,4 +24,31 @@
 		});
 
 		startTime();
+
+        $('input').on('ifClicked', function(event){
+            if ($(this).is(':checked')) {
+                $(this).iCheck('uncheck');
+            }
+        });
+
+        $('input').on('ifChecked', function(event){
+            var soal        = $(this).attr( "data-soal" );
+            var opsi        = $(this).attr( "data-opsi" );
+            var formData    = {no_soal:soal, no_opsi:opsi};
+            var $root       = $("meta[name='root-url']").attr('content');
+
+            $.ajax({
+                url         : $root + 'ujian/save_jawaban',
+                type        : "POST",
+                data        : formData,
+                success     : function(data, textStatus, jqXHR){
+
+                },
+                error       : function(jqXHR, textStatus, errorThrown){
+                    alert("Please refresh your browser! Error Massages " + errorThrown);
+                },
+            });
+        });
+
     });
+

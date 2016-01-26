@@ -40,12 +40,6 @@ class Ujian extends CI_Controller {
 		$this->load->view('ujian/_head_of_paper', $data);
 		$this->load->view('ujian/_soal', $soal);
 		$this->load->view('footer');
-
-		/*
-		<script src="<?php echo base_url() ?>assets/js/icheck.js"></script>
-	    <link href="<?php echo base_url() ?>assets/skins/square/blue.css" rel="stylesheet">
-	    <script src="<?php echo base_url() ?>assets/js/ujian.js"></script>
-		*/
 	}
 
 	public function tes()
@@ -55,6 +49,28 @@ class Ujian extends CI_Controller {
 
 	// method untuk timer
 
-	// method untuk 
+	public function save_jawaban()
+	{
+		if ($this->input->is_ajax_request()) {
+			$soal = $this->input->post('no_soal');
+			$opsi = $this->input->post('no_opsi');
+
+			$this->load->library('form_validation');
+			$this->form_validation->set_rules('no_soal', 'no_soal', 'xss_clean|required|numeric');
+			$this->form_validation->set_rules('no_opsi', 'no_opsi', 'xss_clean|required|numeric');
+
+			$this->load->model('jawaban_model');
+			$query = $this->jawaban_model->getJawaban($this->user_id, $soal);
+			if ($query->num_rows() > 0) {
+				$this->jawaban_model->updateJawaban($this->user_id, $soal, $opsi);
+			} else {
+				$this->jawaban_model->insertJawaban($this->user_id, $soal, $opsi);
+			}
+			// echo $this->user_id . " " . $soal . " " . $opsi;
+			echo "success";
+		} else {
+            show_error("No direct access allowed");
+        }
+	}
 
 }
