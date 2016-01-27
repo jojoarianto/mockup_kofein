@@ -15,13 +15,58 @@ class Home extends CI_Controller {
 
 	public function index()
 	{		
-		$data_alert = [
-			'type' 			=> 'success',
-			'dismiss' 		=> true,
-			'title' 		=> 'Selamat Datang!',
-			'message' 		=> 'Harap membaca tata cara try out KOFEIN 2016 terlebih dahulu sebelum melakukan try out'
-		];
-		$this->init($data_alert);
+		$this->load->model('waktu_model');
+		$waktu = $this->waktu_model->getWaktuByUserId($this->user_id);
+
+		if ($waktu->num_rows() > 0) {
+			$waktu = $waktu->row();
+			$time_now = new DateTime();
+			if ( $waktu->time_start < $time_now->format('Y-m-d H:i:s') ) 
+			{
+				if ( $waktu->time_end > $time_now->format('Y-m-d H:i:s') ) 
+				{
+					$data_alert = [
+						'type' 			=> 'warning',
+						'dismiss' 		=> true,
+						'title' 		=> "Ujian anda sedang berlansung!",
+						'message' 		=> 'Saat ini ujian anda sedang berlansung'
+					];
+					$this->init($data_alert);
+				}
+				else 
+				{				
+					$data_alert = [
+						'type' 			=> 'danger',
+						'dismiss' 		=> true,
+						'title' 		=> "Time's up!",
+						'message' 		=> 'Sorry, waktu ujian anda telah habis'
+					];
+					$this->init($data_alert);
+				}
+			} 
+			else
+			{
+				{				
+					$data_alert = [
+						'type' 			=> 'danger',
+						'dismiss' 		=> true,
+						'title' 		=> "Try out belum dimulai!",
+						'message' 		=> 'Sorry, waktu try out belum dimulai'
+					];
+					$this->init($data_alert);
+				}	
+			}
+		} else {
+			// create waktu baru
+			$data_alert = [
+				'type' 			=> 'success',
+				'dismiss' 		=> true,
+				'title' 		=> 'Selamat Datang!',
+				'message' 		=> 'Harap membaca tata cara try out KOFEIN 2016 terlebih dahulu sebelum melakukan try out'
+			];
+			$this->init($data_alert);
+
+		}
 	}
 
 	private function init( $data_message = null )
@@ -100,8 +145,25 @@ class Home extends CI_Controller {
 			$time_start = new DateTime();
 			$time_start = $time_start->format('Y-m-d H:i:s');
 			$this->waktu_model->insert( $this->user_id, $this->ujian_id, $time_start, $time_end );
+			$this->session->set_flashdata('start_ujian', true);
 			redirect(base_url() . 'ujian/');
 		}
+	}
+
+	public function pengumuman()
+	{
+		$this->load->view('pre_header');
+		$data_header['non_aktif'] = true;
+		$this->load->view('header');
+		$data_alert = [
+			'type' => 'danger',
+			'dismiss' => true,
+			'title' => '!',
+			'message' => 'Waktu pengerjaan anda telah habis'
+		];
+		// $this->load->view('_alert', $data_alert);
+		$this->load->view('pengumuman/index_content');
+		$this->load->view('footer');	
 	}
 
 	public function logout() 

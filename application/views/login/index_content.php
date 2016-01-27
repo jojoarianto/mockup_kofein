@@ -15,7 +15,7 @@
           <div class="form-group text-center">
             <input class="btn btn-primary btn-lg btn-block" type="submit" value="Login">
           </div>
-          <p>belum punya akun kofein? silahkan dafar <a href="#">disini</a></p>
+          <p>belum punya akun kofein? silahkan dafar <a href="<?php echo base_url().'register'; ?>">disini</a></p>
         </form>
       </div>
     </div>

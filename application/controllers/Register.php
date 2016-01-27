@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+class Register extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
@@ -17,8 +17,21 @@ class Login extends CI_Controller {
 		setCssPreHeader(base_url() . 'assets/css/kofein-custom.css');
 
 		$this->load->view('pre_header');
-		$this->load->view('login/index_content');
-		$this->load->view('footer');
+		$this->load->view('register/index_content');
+		$this->load->view('footer');	
+	}
+
+	public function doregister()
+	{
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
+
+		if ($this->form_validation->run() === false) {
+
+		} else {
+			echo $this->input->post('name');
+		}
 	}
 
 	public function doLogin()

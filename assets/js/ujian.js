@@ -15,7 +15,8 @@
         return i;
     }
 
-	$(document).ready(function(){
+    var firstHits = 0;
+    $(document).ready(function(){
 		$('input').iCheck({
 			checkboxClass: 'icheckbox_square-blue',
 			radioClass: 'iradio_square-blue',
@@ -24,6 +25,8 @@
 
 		startTime();
 
+        syncJawaban();
+
         $('input').on('ifClicked', function(event){
             if ($(this).is(':checked')) {
                 $(this).iCheck('uncheck');
@@ -31,27 +34,51 @@
         });
 
         $('input').on('ifChecked', function(event){
-            var soal        = $(this).attr( "data-soal" );
-            var opsi        = $(this).attr( "data-opsi" );
-            var formData    = {no_soal:soal, no_opsi:opsi};
-            var $root       = $("meta[name='root-url']").attr('content');
+            if (firstHits > 0) {
+                var soal        = $(this).attr( "data-soal" );
+                var opsi        = $(this).attr( "data-opsi" );
+                var formData    = {no_soal:soal, no_opsi:opsi};
+                var $root       = $("meta[name='root-url']").attr('content');
 
-            $.ajax({
-                url         : $root + 'ujian/save_jawaban',
-                type        : "POST",
-                data        : formData,
-                success     : function(data, textStatus, jqXHR){
-                    // call function to render butir soal terjawab
-                    renderSoalTerjawab();
-                },
-                error       : function(jqXHR, textStatus, errorThrown){
-                    alert("Please refresh your browser! Error Massages " + errorThrown);
-                },
-            });
+                $.ajax({
+                    url         : $root + 'ujian/save_jawaban',
+                    type        : "POST",
+                    data        : formData,
+                    success     : function(data, textStatus, jqXHR){
+                        // call function to render butir soal terjawab
+                        renderSoalTerjawab();
+                        toastr.info('Jawaban no '+soal+' tersimpan');
+                    },
+                    error       : function(jqXHR, textStatus, errorThrown){
+                        alert("Please refresh your browser! Error Massages " + errorThrown);
+                    },
+                });
+            }
+
         });
 
-        syncJawaban();
         renderSoalTerjawab();
+
+        var t = setTimeout(cek_time, 3000);
+
+        toastr.options = {
+          "closeButton": false,
+          "debug": false,
+          "newestOnTop": false,
+          "progressBar": false,
+          "positionClass": "toast-top-right",
+          "preventDuplicates": false,
+          "onclick": null,
+          "showDuration": "1000",
+          "hideDuration": "1000",
+          "timeOut": "3000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        };
+
     });
 
     function renderSoalTerjawab(){
@@ -79,9 +106,11 @@
             url         : $root + 'ujian/get_all_jawaban_user',
             success     : function(data, textStatus, jqXHR){
                 $.each($.parseJSON(data), function() {
-                    console.log(''+this.no_soal+' opsi '+this.no_opsi);
                     $('input[data-soal='+this.no_soal+'][data-opsi='+this.no_opsi+']').iCheck('check');
                 });
+                
+                if(firstHits > 0) { toastr.success('sinkronisasi berhasil'); }
+                firstHits = firstHits + 1;
             },
             error       : function(jqXHR, textStatus, errorThrown){
                 alert("Please refresh your browser! Error Massages " + errorThrown);
@@ -92,5 +121,25 @@
     function logout(){
         var $root       = $("meta[name='root-url']").attr('content');
         location.replace($root + "home/");
+    }
+
+    function cek_time(){
+        var $root       = $("meta[name='root-url']").attr('content');
+
+        $.ajax({
+            url         : $root + 'ujian/cek_time',
+            success     : function(data, textStatus, jqXHR){
+                if (data=="200"){
+                    console.log(data);
+                } else {
+                    location.replace($root + "home/dotryout");
+                }
+            },
+            error       : function(jqXHR, textStatus, errorThrown){
+                alert("Please refresh your browser! Error Massages " + errorThrown);
+            },
+        });
+
+        var t = setTimeout(cek_time, 30000);
     }
 
