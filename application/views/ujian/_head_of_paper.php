@@ -24,15 +24,15 @@
 				<table border="0" style="text-align: left; width: 100%;">
 					<tr>
 						<td>Jumlah soal</td>
-						<td>: <?php if(isset($data['ujian'])) echo $data['ujian']->jumlah_soal; ?> butir</td>
+						<td>: <span id="n_soal"><?php if(isset($data['ujian'])) echo $data['ujian']->jumlah_soal; ?></span> butir</td>
 					</tr>
 					<tr>
 						<td>Soal terjawab</td>
-						<td id="n_terjawab">: 0 butir</td>
+						<td>: <span id="n_terjawab">0</span> butir</td>
 					</tr>
 					<tr>
 						<td>Belum terjawab</td>
-						<td id="n_kosong">: 100 butir</td>
+						<td>: <span id="n_belum_terjawab">0</span> butir</td>
 					</tr>
 				</table>
 			</div>

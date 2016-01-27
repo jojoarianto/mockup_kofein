@@ -13,7 +13,7 @@ class Ujian extends CI_Controller {
 
 	public function index()
 	{
-		$this->output->enable_profiler(TRUE);
+		// $this->output->enable_profiler(TRUE);
 
 		setJsPreHeader(base_url() . 'assets/js/icheck.js');
 		setCssPreHeader(base_url() . 'assets/skins/square/blue.css');
@@ -66,8 +66,30 @@ class Ujian extends CI_Controller {
 			} else {
 				$this->jawaban_model->insertJawaban($this->user_id, $soal, $opsi);
 			}
-			// echo $this->user_id . " " . $soal . " " . $opsi;
 			echo "success";
+		} else {
+            show_error("No direct access allowed");
+        }
+	}
+
+	public function render_butir_terjawab()
+	{
+		if ($this->input->is_ajax_request()) {
+			$this->load->model('jawaban_model');
+			echo $this->jawaban_model->getCountTerjawab($this->user_id);
+		} else {
+            show_error("No direct access allowed");
+        }
+	}
+
+	
+	public function get_all_jawaban_user()
+	{
+		if ($this->input->is_ajax_request()) {
+			$this->load->model('jawaban_model');
+			$query = $this->jawaban_model->getJawabanUser($this->user_id)->result_array();
+			
+			echo json_encode($query); 
 		} else {
             show_error("No direct access allowed");
         }
