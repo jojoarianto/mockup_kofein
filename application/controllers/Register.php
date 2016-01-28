@@ -16,8 +16,11 @@ class Register extends CI_Controller {
 		setJsPreHeader(base_url() . 'assets/js/login.js');
 		setCssPreHeader(base_url() . 'assets/css/kofein-custom.css');
 
+		$pesan['data_pesan'] = null;
+		$pesan['data_pesan'] = $this->session->flashdata('message');
+
 		$this->load->view('pre_header');
-		$this->load->view('register/index_content');
+		$this->load->view('register/index_content', $pesan);
 		$this->load->view('footer');	
 	}
 
@@ -30,8 +33,11 @@ class Register extends CI_Controller {
 		if ($this->form_validation->run() === false) {
 
 		} else {
-			echo $this->input->post('name');
+			// echo $this->input->post('name');
 		}
+
+		$this->session->set_flashdata('message', 'Maaf fitur register tidak tersedia pada masa simulasi');
+		redirect(base_url() . 'register/');
 	}
 
 	public function doLogin()

@@ -1,5 +1,5 @@
           <h3>Profile anda</h3>
-          <table class="table table-bordered" style="margin-bottom: 30px">
+          <table class="table table-bordered shadow" style="margin-bottom: 30px">
             <tr>
               <td width="40%" class="info">Nama </td>
               <td class="warning"><?php if(isset($data['user'])) echo $data['user']->username ?></td>
@@ -15,7 +15,7 @@
           </table>
 
           <h3>Jadwal anda</h3>
-          <table class="table table-bordered" style="margin-bottom: 30px">
+          <table class="table table-bordered shadow" style="margin-bottom: 30px">
             <tr class="info">
               <td>Mulai ujian</td>
               <td>Selesai ujian</td>

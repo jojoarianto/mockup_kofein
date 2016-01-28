@@ -1,5 +1,5 @@
 <div class="container">
-	<div class="header clearfix">
+	<div class="header clearfix" style="margin-bottom:0px; border-bottom: 0;">
         <nav>
           <?php if ( !isset($non_aktif) ): ?>
           <ul class="nav nav-pills pull-right">
@@ -10,4 +10,8 @@
         </nav>
         <h3 class="text-muted">KOFEIN 2016</h3>
 	</div>
+</div>
+
+<div style="margin-bottom:50px;">
+  <img class="img img-responsive" src="http://kofeinunair.com/images/bg/bg1.png" alt="kofeinunair">
 </div>

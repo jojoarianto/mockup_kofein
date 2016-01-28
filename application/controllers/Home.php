@@ -139,8 +139,11 @@ class Home extends CI_Controller {
 				}	
 			}
 		} else {
+			$this->load->model('ujian_model');
+			$data['pengumuman']	= $this->ujian_model->getUjianById($this->ujian_id)->row();
+
 			$time_end = new DateTime();
-			$time_end = $time_end->add(new DateInterval('PT10M'));
+			$time_end = $time_end->add(new DateInterval('PT'.$data['pengumuman']->durasi_ujian.'M'));
 			$time_end = $time_end->format('Y-m-d H:i:s');
 			$time_start = new DateTime();
 			$time_start = $time_start->format('Y-m-d H:i:s');
